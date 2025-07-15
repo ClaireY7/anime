@@ -28,7 +28,7 @@
         this.radius = 15;
         this.dx = (Math.random() - 0.5) * 6;
         this.dy = (Math.random() - 0.5) * 6;
-        this.color = `hsl(${Math.random() * 360}, 70%, 60%)`;
+        this.color = `hsl(${Math.random() * 360}, 70%, 60%)`; 
       }
 
       draw() {
@@ -37,6 +37,10 @@
         ctx.fillStyle = this.color;
         ctx.fill();
         ctx.closePath();
+        const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.radius);
+        gradient.addColorStop(0, `hsl(${Math.random()*360}, 100%, 70%)`);
+        gradient.addColorStop(1, `hsl(${Math.random()*360}, 100%, 30%)`);
+        ctx.fillStyle = gradient;
       }
 
       update() {
