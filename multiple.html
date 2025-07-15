@@ -44,21 +44,29 @@
           this.dx = -this.dx;
         }
         if (this.y + this.dy > canvas.height - this.radius || this.y + this.dy < this.radius) {
-          this.dy = -this.dy += this.dy;
+          this.dy = -this.dy;
+        }
 
+        this.x += this.dx;
+        this.y += this.dy;
         this.draw();
       }
     }
 
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      balls.forEach(ball => ball.update());
+      requestAnimationFrame(animate);
+    }
+
     canvas.addEventListener('click', function(event) {
       const rect = canvas.getBoundingClientRect();
-      const x = event.client```
+      const x = event.clientX - rect.left;
+      const y = event.clientY - rect.top;
+      balls.push(new Ball(x, y));
+    });
 
----
-
-### 🧠 Features:
-- Click anywhere to spawn a new ball.
-- Each ball has a random direction and color.
-- Balls bounce off the canvas edges.
-
-Would you like to add **gravity**, **collision between balls**, or maybe a **score counter** for a game-like experience?
+    animate();
+  </script>
+</body>
+</html>
