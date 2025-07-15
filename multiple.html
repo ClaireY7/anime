@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Click to Create Bouncing Balls</title>
+  <style>
+    canvas {
+      background: #f0f0f0;
+      display: block;
+      margin: 0 auto;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="myCanvas" width="600" height="400"></canvas>
+
+  <script>
+    const canvas = document.getElementById('myCanvas');
+    const ctx = canvas.getContext('2d');
+
+    const balls = [];
+
+    class Ball {
+      constructor(x, y) {
+        this.x = x;
+        this.y = y;
+        this.radius = 15;
+        this.dx = (Math.random() - 0.5) * 6;
+        this.dy = (Math.random() - 0.5) * 6;
+        this.color = `hsl(${Math.random() * 360}, 70%, 60%)`;
+      }
+
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+        ctx.closePath();
+      }
+
+      update() {
+        if (this.x + this.dx > canvas.width - this.radius || this.x + this.dx < this.radius) {
+          this.dx = -this.dx;
+        }
+        if (this.y + this.dy > canvas.height - this.radius || this.y + this.dy < this.radius) {
+          this.dy = -this.dy += this.dy;
+
+        this.draw();
+      }
+    }
+
+    canvas.addEventListener('click', function(event) {
+      const rect = canvas.getBoundingClientRect();
+      const x = event.client```
+
+---
+
+### 🧠 Features:
+- Click anywhere to spawn a new ball.
+- Each ball has a random direction and color.
+- Balls bounce off the canvas edges.
+
+Would you like to add **gravity**, **collision between balls**, or maybe a **score counter** for a game-like experience?
