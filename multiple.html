@@ -34,13 +34,13 @@
       draw() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = this.color;
+        ctx.fillStyle = gradient;
         ctx.fill();
         ctx.closePath();
         const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.radius);
         gradient.addColorStop(0, `hsl(${Math.random()*360}, 100%, 70%)`);
         gradient.addColorStop(1, `hsl(${Math.random()*360}, 100%, 30%)`);
-        ctx.fillStyle = gradient;
+        
       }
 
       update() {
